@@ -7,7 +7,7 @@ class Recipe < ActiveRecord::Base
 
   attr_accessible :name, :body, :description
   
-  version_fu 
+  version_fu rescue nil
   
   def validate
     check_syntax
