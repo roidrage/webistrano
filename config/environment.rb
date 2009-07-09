@@ -67,6 +67,8 @@ ExceptionNotifier.sender_address = WebistranoConfig[:exception_sender_address]
 # delete cached stylesheet on boot in order to delete stale versions
 File.delete("#{RAILS_ROOT}/public/stylesheets/application.css") if File.exists?("#{RAILS_ROOT}/public/stylesheets/application.css")
 
+require 'proc_source'
+
 # set default time_zone to UTC
 ENV['TZ'] = 'UTC'
 Time.zone = 'UTC'

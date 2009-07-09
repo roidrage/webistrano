@@ -1,9 +1,14 @@
-<% form_for(:project, :url => projects_path) do |f| %>
+<% form_for(:project, :url => projects_path, :html => {:multipart => true}) do |f| %>
 <div style="width:335px;">
 
   <%= render(:partial => 'form')%>
   
   <%= link_to 'Back to projects', projects_path, :class => 'arrow_link ontheright' %>
+
+  <p>
+    <b>Import Existing Capfile</b><br />
+    <%= file_field_tag "capfile" %>
+  </p>
 
   <p>
     <%= submit_tag "Create" %>

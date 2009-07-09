@@ -5,9 +5,13 @@ class Recipe < ActiveRecord::Base
   validates_presence_of :name, :body
   validates_length_of :name, :maximum => 250
 
-  attr_accessible :name, :body, :description
+  attr_accessor :user_id
   
-  version_fu rescue nil
+  attr_accessible :name, :body, :description, :user_id
+  
+  version_fu do
+    belongs_to :user, :class_name => "::User"
+  end rescue nil
   
   def validate
     check_syntax

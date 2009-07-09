@@ -51,11 +51,7 @@ class ProjectsController < ApplicationController
   # POST /projects
   # POST /projects.xml
   def create
-    if params[:capfile].blank?
-      @project = Project.new(params[:project])
-    else
-      @project = CapfileImporter.new.run(params[:capfile], params[:project])
-    end
+    @project = Project.new(params[:project])
     
     if load_clone_original
       action_to_render = 'clone'  

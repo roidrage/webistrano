@@ -120,6 +120,14 @@ class ProjectsControllerTest < Test::Unit::TestCase
     assert_redirected_to projects_path
   end
   
+  def test_new_project_with_import_should_create_project_from_capfile
+    @user = admin_login
+    Project.delete_all
+    post :create, :capfile => fixture_file_upload("Capfile"), :project => {:name => "Chunky Bacon!", :template => 'mongrel_rails'}
+    assert_equal 1, Project.count
+    assert_response :redirect
+  end
+  
   def test_clone
     @user = admin_login
     @project.template = "mod_rails"
